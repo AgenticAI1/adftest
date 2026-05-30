@@ -1,0 +1,37 @@
+{
+	"name": "LS_DS_EDW_TGT",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"version": "2.0",
+		"type": "AzureSqlDatabase",
+		"annotations": [
+			"BODS_Datastore: DS_EDW_TGT",
+			"BODS_Type: DIDatabaseDatastore",
+			"BODS_DB_Type: AzureSQL",
+			"BODS_Environments: PRD"
+		],
+		"parameters": {
+			"server_name": {
+				"type": "String",
+				"defaultValue": "edw-tgt-prd.database.windows.net"
+			},
+			"database_name": {
+				"type": "String",
+				"defaultValue": "edw_curated"
+			},
+			"user_name": {
+				"type": "String",
+				"defaultValue": "etl_writer"
+			}
+		},
+		"typeProperties": {
+			"server": "@linkedService().server_name",
+			"database": "@linkedService().database_name",
+			"encrypt": true,
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "@linkedService().user_name",
+			"encryptedCredential": "<secured-azure-token>"
+		}
+	}
+}

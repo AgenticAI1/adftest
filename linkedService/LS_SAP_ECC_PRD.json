@@ -1,0 +1,64 @@
+{
+	"name": "LS_SAP_ECC_PRD",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"version": "2.0",
+		"type": "SapEcc",
+		"annotations": [
+			"BODS_Datastore: DS_SAP_ECC_PRD",
+			"BODS_Type: DIDatabaseDatastore",
+			"BODS_DB_Type: SAP Applications",
+			"BODS_Environment: PRD",
+			"BODS_Client: 800",
+			"BODS_Language: EN",
+			"BODS_ArrayFetchSize: 5000",
+			"BODS_LoaderXactSize: 10000",
+			"BODS_MaxConcurrentConnections: 4"
+		],
+		"parameters": {
+			"applicationServer": {
+				"type": "String",
+				"defaultValue": "sapeccprd01.corp.local"
+			},
+			"systemNumber": {
+				"type": "String",
+				"defaultValue": "00"
+			},
+			"clientNumber": {
+				"type": "String",
+				"defaultValue": "800"
+			},
+			"language": {
+				"type": "String",
+				"defaultValue": "EN"
+			},
+			"userName": {
+				"type": "String",
+				"defaultValue": "BODS_RFC_USER"
+			}
+		},
+		"typeProperties": {
+			"url": {
+				"value": "@linkedService().applicationServer",
+				"type": "Expression"
+			},
+			"systemNumber": {
+				"value": "@linkedService().systemNumber",
+				"type": "Expression"
+			},
+			"clientId": {
+				"value": "@linkedService().clientNumber",
+				"type": "Expression"
+			},
+			"language": {
+				"value": "@linkedService().language",
+				"type": "Expression"
+			},
+			"userName": {
+				"value": "@linkedService().userName",
+				"type": "Expression"
+			},
+			"encryptedCredential": "**encrypted-credential-placeholder**"
+		}
+	}
+}

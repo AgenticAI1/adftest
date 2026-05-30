@@ -1,0 +1,61 @@
+{
+	"name": "LS_Oracle_DS_ORACLE_FINANCE",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"version": "2.0",
+		"type": "Oracle",
+		"annotations": [
+			"BODS_Datastore: DS_ORACLE_FINANCE",
+			"BODS_Type: DIDatabaseDatastore",
+			"BODS_DB_Type: Oracle",
+			"BODS_Environments: PRD",
+			"BODS_Schema_Owner: APPS",
+			"BODS_NLS_Language: AMERICAN",
+			"BODS_NLS_Territory: AMERICA",
+			"BODS_Array_Fetch_Size: 5000",
+			"BODS_Loader_Xact_Size: 10000"
+		],
+		"parameters": {
+			"server": {
+				"type": "String",
+				"defaultValue": "FINPRD01"
+			},
+			"port": {
+				"type": "Int",
+				"defaultValue": 1521
+			},
+			"serviceName": {
+				"type": "String",
+				"defaultValue": "finprd01.corp.local"
+			},
+			"username": {
+				"type": "String",
+				"defaultValue": "BODS_EXTRACT"
+			},
+			"schema": {
+				"type": "String",
+				"defaultValue": "APPS"
+			}
+		},
+		"typeProperties": {
+			"server": {
+				"value": "@linkedService().server",
+				"type": "Expression"
+			},
+			"port": {
+				"value": "@linkedService().port",
+				"type": "Expression"
+			},
+			"serviceName": {
+				"value": "@linkedService().serviceName",
+				"type": "Expression"
+			},
+			"authenticationType": "Basic",
+			"username": {
+				"value": "@linkedService().username",
+				"type": "Expression"
+			},
+			"encryptedCredential": "<encrypted-credential-placeholder-for-BODS_EXTRACT>"
+		}
+	}
+}
